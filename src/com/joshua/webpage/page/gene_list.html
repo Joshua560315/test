@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/jquery-3.0.0.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+  <div id="searchBox">
+    <span>
+        <select id="classification">
+            <option value="">全部</option>
+            <option value="Vertebrates">脊柱动物</option>
+            <option value="Metazoa">其他后生动物</option>
+            <option value="Plants">植物</option>
+            <option value="Funji">真菌</option>
+            <option value="Bacteria">细菌</option>
+            <option value="Protists">原生动物</option>
+        </select>
+    </span>
+    <span>
+        <a>是否有数据：</a>
+        <select id="hasData">
+            <option value="2">All</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </span>
+    <span>
+        <a>每页显示：</a>
+        <select id="pageMax">
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </span>
+    <span>
+        <input id="keyword" type="text" placeholder="请输入要搜索的内容">
+        <input type="button" value="搜索" onclick="search()">
+    </span>
+  </div>
+  <div id="searchResult">
+    <table>
+      <thead>
+        <tr>
+            <th>头像</th>
+            <th>物种中文名</th>
+            <th>物种英文名</th>
+            <th>物种拉丁文名</th>
+            <th>物种分类学编号</th>
+            <th>物种生物学分类</th>
+            <th>基因组组装版本</th>
+            <th>基因组装版本编号</th>
+            <th>编号</th>
+            <th>有数据</th>
+            <th>数据源</th>
+            <th>源版本</th>
+            <th>组装发布时间</th>
+            <th>数据创建时间</th>
+            <th>数据更新时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="s in list1" v-if="s.show">
+            <td><span style="color:#F0870D">{{s.img}}</span></td>
+            <td>{{s.znName}}</td>
+            <td>{{list2[$index].enName}}</td>
+            <td>{{list2[$index].ltName}}</td>
+            <td>{{s.speciesClassificationId}}</td>
+            <td>{{s.speciesClassification}}</td>
+            <td>{{s.geneAssVersion}}</td>
+            <td>{{s.geneAssId}}</td>
+            <td>{{s.serialNumber}}</td>
+            <td>{{s.hasData}}</td>
+            <td>{{s.sourceData}}</td>
+            <td>{{s.sourceVersion}}</td>
+            <td>{{s.startDate}}</td>
+            <td>{{s.createDate}}</td>
+            <td>{{s.updateDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+<script>
+  new Vue({
+      el:'#searchResult',
+      data:{
+          list1:[{img:1,znName:0,show:true},{img:1,znName:2,show:true}],
+          list2:[{ltName:'lt',enName:'en'}]
+      },
+      created () {
+          console.log(this)
+      }
+  });
+</script>
+</html>

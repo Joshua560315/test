@@ -1,0 +1,39 @@
+.li_checkboxDiv .app-checkbox {
+    display: inline-block;
+    vertical-align: sub;
+}
+ul {
+    list-style-type: none;
+}
+ul.row{
+    padding: 0;
+    margin: 5px 5px 5px 5px;
+}
+.app-checkbox label {
+    background-color: #fff;
+}
+.app-checkbox label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: -3px 6px 0 0 !important;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    /* background: url(green1.png) no-repeat #fff -4px -3px; */
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+}
+.app-checkbox input[type="checkbox"] {
+    margin: 3px 3px 0px 5px;
+    display: none !important;
+}
+.li_checkboxDiv {
+    margin: 5px 0;
+    float: left;
+    list-style: none;
+    margin-right: 25px;
+    background-color: #F7F7F7;
+}
+.item {
+    cursor:pointer;
+}

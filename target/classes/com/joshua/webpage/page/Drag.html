@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动</title>
+    <link rel="stylesheet" href="../css/drag.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<style>
+    .ulul{
+        clear: both;
+        display: inline-block;
+    }
+    .ulul li{
+        display: inline-block;
+    }
+</style>
+<body>
+<div>
+    <ul id="samples" class="row">
+        <li class="li_checkboxDiv">
+            <div class="app-checkbox"><label> <input onclick="addSample(this)"
+                                                     value="T02" name="0" type="checkbox"> </label>T02
+            </div>
+        </li>
+        <li class="li_checkboxDiv">
+            <div class="app-checkbox"><label> <input onclick="addSample(this)"
+                                                     value="T04" name="1" type="checkbox"> </label>T04
+            </div>
+        </li>
+        <li class="li_checkboxDiv">
+            <div class="app-checkbox"><label> <input onclick="addSample(this)"
+                                                     value="T06" name="2" type="checkbox"> </label>T06
+            </div>
+        </li>
+        <li class="li_checkboxDiv">
+            <div class="app-checkbox"><label> <input onclick="addSample(this)"
+                                                     value="T08" name="3" type="checkbox"> </label>T08
+            </div>
+        </li>
+        <li class="li_checkboxDiv">
+            <div class="app-checkbox"><label> <input onclick="addSample(this)"
+                                                     value="T10" name="4" type="checkbox"> </label>T10
+            </div>
+        </li>
+        <li class="li_checkboxDiv">
+            <div class="app-checkbox"><label> <input onclick="addSample(this)"
+                                                     value="T12" name="5" type="checkbox"> </label>T12
+            </div>
+        </li>
+    </ul>
+    <div id="sampleSortList" class="item_content">
+        <span class="item_title" style="float: left;margin-top: 5px">所选样品为：</span>
+        <ul class="ulul">
+
+        </ul>
+    </div>
+</div>
+</body>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/jquery.tmpl.js"></script>
+<script src="../js/jquery.dragsort-0.5.1.js"></script>
+<script>
+    function addSample(_this) {
+        if($(_this).parent().hasClass("checked")){
+            $(_this).parent().removeClass("checked");
+            $("#sampleSortList").find("[name='"+$(_this).attr("name")+"']").remove();
+        }else{
+            $(_this).parent().addClass("checked");
+            var data = {index:$(_this).attr('name'),sampleName:$(_this).val()};
+            $("#dragSortLi").tmpl(data).appendTo($("#sampleSortList ul"));
+        }
+    }
+    $("#sampleSortList ul").dragsort({
+                                      dragSelector: "li",      //容器拖动手柄
+                                      scrollSpeed: 5            //拖动速度
+                                 });
+</script>
+<script type="text/x-jquery-tmpl" id="dragSortLi">
+    <li name='{{= index}}' style="float: left;margin:5px 25px;">
+        <div class="item">
+        <span>{{= sampleName}}</span>
+        </div>
+    </li>
+</script>
+</html>

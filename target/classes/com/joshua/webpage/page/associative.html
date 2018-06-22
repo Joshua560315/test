@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .imitate-option {
+            position: absolute;
+            top: 100%;
+            padding: 0;
+            list-style-type: none;
+            border: 1px solid #dedede;
+            background: #fff;
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            z-index: 1;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<form id="projectSearch" class="input-group m-b-sm" style="margin-bottom: 30px;">
+    <span class="input-group-addon" style="border: none;">项目名称：</span>
+    <input type="text" maxlength="100" class="form-control" style="width:50%;border-radius: 5px;"/>
+    <div style="height: auto; display: none;">
+
+    </div>
+</form>
+asdassssssssssssssasdas
+adsasdasd
+</body>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/jquery.tmpl.js"></script>
+<script type="text/x-jquery-tmpl" id="associativeSearch">
+<div>
+    <ul class="imitate-option">
+    {{each items}}
+        <li data-key="{{= projectId}}">{{= projectName}}</li>
+    {{/each}}
+    </ul>
+</div>
+<div>
+<span></span>
+</div>
+</script>
+<script>
+    console.log((/^[\w\u4e00-\u9fa5]+$/).test(""));
+    $("#projectSearch input").focus(function () {
+        $(this).parent().find("div").css("display","block").html("");
+        var items = [{projectId:'001',projectName:'sss'},{projectId:'002',projectName:'sssvvvv'}];
+        var data = {items:items};
+        $("#associativeSearch").tmpl(data).appendTo($("#projectSearch div"));
+    });
+    $("#projectSearch input").blur(function () {
+        $(this).parent().find("div").css("display","none");
+    })
+</script>
+</html>

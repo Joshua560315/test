@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>图片滚动</title>
+    <style>
+        *{margin: 0; padding: 0;}
+
+        img{
+            border:0;
+        }
+
+        #container{
+            width:800px;
+            height: 400px;
+            margin:10px;
+            /*border:3px solid blue;*/
+            overflow: hidden;
+            position: relative;
+        }
+
+        #container ul{
+            list-style: none;
+            width:10000px;
+            position: absolute;
+        }
+
+        #container ul li{
+            float:left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="content">
+        <li><a href="#"><img src="../img/example-slide-1.jpg"/></a></li>
+        <li><a href="#"><img src="../img/example-slide-2.jpg"/></a></li>
+        <li><a href="#"><img src="../img/example-slide-3.jpg"/></a></li>
+        <li><a href="#"><img src="../img/example-slide-4.jpg"/></a></li>
+    </ul>
+</div>
+</body>
+<script src="../js/jquery-3.0.0.js"></script>
+<script>
+    window.onload = function(){
+
+        /*计算一个segment的宽度*/
+
+        var segmentWidth = 0;
+        $("#container #content li").each(function(){
+            segmentWidth+= $(this).outerWidth(true);
+        });
+
+        $("#container #content li").clone().appendTo($("#container #content"));
+
+        run(20000);
+
+        function run(interval){
+            $("#container #content").animate({"left":-segmentWidth}, interval,"linear",function(){
+                $("#container #content").css("left",0);
+                run(interval);
+            });
+        }
+
+        $("#container").mouseenter(function(){
+            $("#container #content").stop();
+        }).mouseleave(function(){
+            var passedCourse = -parseInt($("#container #content").css("left"));
+            var time = 12000 * (1 - passedCourse/segmentWidth);
+            run(time);
+        });
+    };
+</script>
+</html>

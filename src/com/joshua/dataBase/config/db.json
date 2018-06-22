@@ -1,0 +1,6 @@
+{
+  "driver": "com.mysql.jdbc.Driver",
+  "url": "jdbc:mysql://localhost:3506/linzl",
+  "username": "root",
+  "password": "123.bmk"
+}
